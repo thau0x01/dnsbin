@@ -10,9 +10,9 @@ from datetime import datetime
 import websocket
 import json
 
-ws_addr = "ws://dns1.zhack.ca:8001/dnsbin"  # DnsBin WebSocket Address
-site_addr = "http://dnsbin.zhack.ca/"  # URL
-subd_addr = ".d.zhack.ca"  # Subdomain
+ws_addr = "ws://dns1.thau0x01.com:8001/dnsbin"  # DnsBin WebSocket Address
+site_addr = "http://dnsbin.thau0x01.com/"  # URL
+subd_addr = ".d.thau0x01.com"  # Subdomain
 
 def handle_message(ws, message):
     try:
